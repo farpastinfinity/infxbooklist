@@ -1,0 +1,134 @@
+body {
+	background: url('images/bg.png') #efefef repeat-x;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color:#284378;
+	font-weight: 200;
+}
+
+h1 {	
+	font-weight: 100;
+}
+
+h3 {
+	font-size:1.75em;
+}
+
+h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#improveformprompt {
+	margin-top:-2em;
+	margin-left:1em;
+	color:#999;
+}
+
+#masthead {
+	height: 90px;
+	position: relative;
+	border-bottom:1px solid #ccc;
+}
+
+#masthead h1 {
+	position: absolute;
+	width:661px;
+	top:0;right:0;
+	line-height: 90px;
+	text-align: center;
+}
+
+a#logo {
+	display: block;
+	margin:22.5px 15px;
+	width:274px;
+	height: 45px;
+	text-indent: -9999em;
+	background: url('images/logo.png') no-repeat;
+}
+
+.columns {
+	position: relative;
+	overflow: hidden;
+}
+
+#left {
+	margin-bottom:-2000px;
+	padding-bottom:2000px;
+}
+
+#left, #right {
+	padding-top:15px;
+}
+
+ul {
+	list-style: none;
+}
+
+li h3 {
+	padding-bottom: 5px;
+	border-bottom:1px solid #ccc;
+}
+
+ul li {
+	margin:15px auto;
+}
+
+.book {
+	margin-bottom: 3em;
+}
+
+.cover img {
+	width:100%;
+	border-right:3px solid #ddd;
+	border-bottom:3px solid #ddd;
+}
+
+.title h3 {
+	margin:0;
+	letter-spacing: .05em;
+}
+.title > label {
+	display: block;
+	color:#666;
+	border-bottom:1px solid #ccc;
+	margin-bottom:15px;
+	font-weight: normal;
+}
+
+.title p {
+	margin-bottom:5px;
+	color:#666;
+	font-size: 0.95em;
+	font-style: italic;
+}
+
+.title p a {
+	color:#06C;
+	font-weight: 400;
+}
+
+#feedbacktext {
+	margin-top:-1em;
+	color:#aaa;
+	width:220px;
+	height:3em;
+}
+
+#sendbutton {
+	float: right;
+}
+
+#footer {
+	height: 120px;
+	border-top:1px solid #ccc;
+	padding-top:15px;
+}
+
+#footer p {
+	margin:0;
+	text-align: center;
+	color: #999;
+}

@@ -1,3 +1,4 @@
 *.pyc
 media/covers/*
 *.db
+.DS_Store

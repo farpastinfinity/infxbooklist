@@ -88,7 +88,10 @@ def _parse_url(openurl):
         img_links = [c for c in e.findall('{http://www.w3.org/2005/Atom}link')
                      if c.attrib['rel'] == 'http://schemas.google.com/books/2008/thumbnail']
         if len(img_links) > 0:
-            img_url = img_links[0].attrib['href']
+            #img_url = img_links[0].attrib['href']
+            img_url = 'http://bks1.books.google.com/books?id='
+            img_url += gid
+            img_url += '&printsec=frontcover&img=1&zoom=2&source=gbs_api'
             if len(img_links) > 1:
                 print >>sys.stderr, 'Multiple image links found. Taking first one as cover'
         else:

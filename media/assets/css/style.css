@@ -55,6 +55,7 @@ a#logo {
 }
 
 #left {
+	min-height: 600	px;
 	margin-bottom:-2000px;
 	padding-bottom:2000px;
 }
@@ -79,11 +80,25 @@ ul li {
 .book {
 	margin-bottom: 3em;
 }
-
+.cover {
+	position: relative;
+}
 .cover img {
 	width:100%;
 	border-right:3px solid #ddd;
 	border-bottom:3px solid #ddd;
+}
+
+.cover span {
+	display: block;
+	text-align: center;
+}
+
+.cover span img {
+	width:65%;
+	margin:0 auto;
+	margin-top:-35px;
+	border:0;
 }
 
 .title h3 {

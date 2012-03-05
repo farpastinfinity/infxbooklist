@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'^feedback/$', 'infxbooklist.booklistapp.views.feedback'),
     (r'^edit/$', 'infxbooklist.booklistapp.views.edit'),
     (r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )
 
 if settings.DEBUG:

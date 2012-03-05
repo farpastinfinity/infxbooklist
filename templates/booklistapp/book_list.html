@@ -140,7 +140,7 @@
 			{% for book in book_list %}
 				<div class="book">
 					{% if complete_view %}
-						{% if book.cover_image %}<img src="/covers/{{ book.cover_image }}" style="max-width:51px; max-height:90px" class="bookthumb"/>{% endif %}
+						{% if book.cover_image %}<img src="/media/covers/{{ book.cover_image }}" style="max-width:51px; max-height:90px" class="bookthumb"/>{% endif %}
 					{% endif %}
 					<p class="title"><a href="{{ book.url }}" class="booktitle">{{ book.title }}</a></p>
 					<p class="author">by {{ book.authors }}</p>

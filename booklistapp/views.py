@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.views import redirect_to_login
 from django.views.generic.list_detail import object_list
 from models import Book, Category, CategoryType, FeedbackNote, Recommendation, User
-from settings import AMAZON_KEY, DEBUG
+from settings import AMAZON_KEY, DEBUG, BOOK_COVERS
 from booklistapp.utils import english_list
 import urllib
 import urllib2
@@ -109,7 +109,7 @@ def edit(request):
                 print >>sys.stderr, repr(request.POST)
             elif request.POST['action'] == 'delete':
                 if len(Recommendation.objects.filter(book=r.book)) == 1:
-                    os.unlink(os.path.join('/opt/infxbooklist/bookcovers/', r.book.cover_image))
+                    os.unlink(os.path.join(BOOK_COVERS, r.book.cover_image))
                     r.book.delete()
                 r.delete()
         else:
@@ -130,7 +130,7 @@ def edit(request):
                     img_data = image_link.read()
                     image_link.close()
                     rand_fn = datetime.datetime.utcnow().isoformat()+'__'+str(random.randint(0, sys.maxint))
-                    rand_pth = os.path.join('/opt/infxbooklist/bookcovers', rand_fn)
+                    rand_pth = os.path.join(BOOK_COVERS, rand_fn)
                     with open(rand_pth, 'w') as f:
                         f.write(img_data)
                     b.cover_image = rand_fn

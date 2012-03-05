@@ -78,7 +78,7 @@
 									<label>{{ book.authors }}</label>
 									{% with book.get_comments as comments %}
 									{% for c in comments %}
-										<p><label><a href="#">{{ c.user }}</a></label>:&nbsp;"{{ c.comment }}"</p>
+										<p><label><a href="#">{{ c.user.get_full_name }}</a></label>:&nbsp;"{{ c.comment }}"</p>
 									{% endfor %}
 									{% endwith %}									
 								</div>
@@ -103,7 +103,7 @@
 									<label>{{ book.authors }}</label>
 									{% with book.get_comments as comments %}
 									{% for c in comments %}
-										<p><label><a href="#">{{ c.user }}</a></label>:&nbsp;"{{ c.comment }}"</p>
+										<p><label><a href="#">{{ c.user.get_full_name }}</a></label>:&nbsp;"{{ c.comment }}"</p>
 									{% endfor %}
 									{% endwith %}									
 								</div>

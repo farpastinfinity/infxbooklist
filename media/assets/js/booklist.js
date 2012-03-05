@@ -163,7 +163,3 @@
 
 })(jQuery);
 $('.left').stickySidebar({ speed:100 });
-
-$(document).ready(function() {
-	$("div.flash").fadeIn('slow').fadeOut(1000*3);
-});

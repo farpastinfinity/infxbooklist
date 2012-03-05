@@ -58,7 +58,7 @@ def index(request, category):
                        paginate_by=10,
                        extra_context={'page_title': page_title,
                                       'complete_view': view=='complete',
-                                      'category_types': CategoryType.objects.all(),
+                                      'category_types': CategoryType.objects.all(),	
                                       'current_slug': category})
     
     

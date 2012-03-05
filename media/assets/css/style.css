@@ -50,18 +50,21 @@ a#logo {
 }
 
 .columns {
-	position: relative;
 	overflow: hidden;
 }
 
 #left {
-	min-height: 600	px;
-	margin-bottom:-2000px;
-	padding-bottom:2000px;
+	position: relative;
+	min-height:600px;
+}
+
+.left {
 }
 
 #left, #right {
 	padding-top:15px;
+	padding-bottom: 5000px;
+	margin-bottom:-5000px;
 }
 
 ul {
@@ -75,6 +78,18 @@ li h3 {
 
 ul li {
 	margin:15px auto;
+}
+
+li ul li {
+	margin-left:3px;
+	padding-left:5px;
+}
+
+li.selected, li ul li:hover {
+	color: #284378;
+	border-left:3px solid #ccc;
+	margin-left:0;
+	padding-left:5px;
 }
 
 .book {

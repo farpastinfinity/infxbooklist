@@ -38,11 +38,25 @@
 			</div>
 			<div class="searchResults">
 				<h3>Results</h3>
+				<div class="span-17">
 				{% for r in results %}
-					<div class="span-5 {% if forloop.counter|divisibleby:3 %}last{% else %} append-1 {% endif %}">
-						<img src="{{ r.thumbnail_url }}" style="width:100px; height:100px;"/>
-					</div>
-				{% endfor %}				
+							<div class="border book span-4 {% if forloop.counter|divisibleby:4 %} last {% endif %}">
+								<a href="{{ r.url }}">
+									<img class="bookCover" src="{{ r.thumbnail_url }}" />
+								</a>
+								<script type="text/javascript">
+									GBS_insertPreviewButtonPopup("{{ r.gid }}");
+								</script>
+								<h4>{{ r.title }}</h4>
+								<label>{{ r.authors }}</label>
+								<input class="addThisBookButton" type="button" value="Add this book" onclick="javascript:$('.searchResults').fadeOut(100);"/>
+							</div>
+					{% if forloop.counter|divisibleby:4 %}
+						</div>
+						<div class="span-17">
+					{% endif %}
+				{% endfor %}
+				</div>				
 			</div>
 		<!-- /right --></div>
 	<!-- /container --></div>

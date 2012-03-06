@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
 }
 
+h4 {
+	font-weight:400;
+}
+
 h1 {	
 	font-weight: 100;
 }
@@ -197,7 +201,21 @@ li.selected, li ul li:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
-#form-booksearch input {
+.addThisBookButton {
+	padding:0;margin:10px auto;
+	border:1px solid #ccc;
+	font-size: 0.95em;
+	padding:5px;
+	cursor:pointer;
+	color:#333;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
 .searchResults h3 {
@@ -207,4 +225,32 @@ li.selected, li ul li:hover {
 
 .searchResults {
 	margin-top:30px;
+}
+
+.searchResults .book {
+	text-align: center;
+}
+
+.searchResults .book img.bookCover {
+	border:3px solid #aaa;
+	height:75px;
+}
+
+.searchResults .book img {
+	display: block;
+	margin:3px auto;
+}
+
+.searchResults span img {
+	width:50%;
+}
+
+.searchResults label {
+	display: block;
+	font-weight: normal;
+	margin-top:-15px;
+}
+
+.searchResults h4 {
+	font-weight: bold;
 }

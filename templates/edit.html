@@ -1,80 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html>
+<!DOCTYPE html>
+<html lang=en>
 <head>
-	<title>Edit - Informatics Book List</title>
-	<link rel="stylesheet" href="/static/base.css" type="text/css" charset="utf-8" />
-	<style type="text/css">
-		body {
-			width: 30em;
-			font-family: sans-serif;
-		}
-		p, label {
-			font-size: small;
-		}
-	</style>
+	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
+	<link rel="stylesheet" href="/media/assets/css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print"> 
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="/media/assets/css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
 </head>
 <body>
-	<h1>Informatics Book List: Edit</h1>
-	
-	<h2>Known Issues</h2>
-	<ul>
-		<li>Really ugly.</li>
-		<li>Not using HTTPS for authentication!</li>
-	</ul>
-	
-	<h2>Add New Book</h2>
-	<p class='help'>Search for a book you would like to add and/or comment upon. The Amazon.com books database will be used. Then, optionally, add a public comment to the book. If the book has already	been recommended, your comment will be appended, and the book will remain on the public list until you and all other editors retract their recommendation.</p>
-	<form action="/edit/" method="get" accept-charset="utf-8">
-		<p><input type="text" name="keywords" value="" id="keywords" style="font-size: large" />
-			<input type="submit" value="Search" style="font-size: xx-large">
-		</p>
-	</form>
-	<table>
-		{% for r in results %}
-		<tr>
-			<td>
-				{% if r.thumbnail_url %}
-				<img src="{{ r.thumbnail_url }}" />
-				{% endif %}
-			</td>
-			<td><a href="{{ r.link }}">{{ r.title }}</a></td>
-			<td>{{ r.authors }}</td>
-			<td>
-				<form action="/edit/" method="post" accept-charset="utf-8">
-					<input type="hidden" value="{{ r.gid }}" name="gid" />
-					<input type="submit" value="Add Book" />
-				</form>
-			</td>
-		</tr>
-		{% endfor %}
-	</table>
-	
-	<h2>Your Recommendations and Comments</h2>
-	{% if not recs %}
-	<p>None, yet. Add some, above.</p>
-	{% else %}
-		{% for rec in recs %}
-			<div class="book">
-				<div style="padding-bottom: 10px">
-					<h3 style="font-weight: bold; display: inline"><a href="{{rec.book.url}}" class="booktitle">{{ rec.book.title }}</a> by {{ rec.book.authors }}</h3>
-					<form style="display: inline" action="/edit/" method="post" accept-charset="utf-8">
-						<input type="hidden" name="action" value="delete" />
-						<input type="hidden" value="{{ rec.book.gid }}" name="gid" />
-						<input type="submit" value="Remove Recommendation" />
-					</form>
-				</div>
-				<form action="/edit/" method="post" accept-charset="utf-8">
-					<input type="hidden" name="action" value="update" />
-					<input type="hidden" value="{{ rec.book.gid }}" name="gid" />
-					<label for="blurb" style="font-weight: bold">Your Blurb</label><br />
-					<textarea rows="4" cols="30" name="blurb">{{ rec.comment|escape }}</textarea>
-					{{ cat_check_htmls.pop|safe }}
-					<input type="submit" value="Save" />
+<div class="container">
+	<!-- Masthead -->
+	<div id="masthead" class="span-24">
+		<a href="/" id="logo">
+			UCIrvine | Department of Informatics
+		</a>
+		<h1>
+			Informatics Booklist
+		</h1>
+	<!-- /Masthead --></div>
+	<div class="container span-24 columns">
+		<div id="left" class="span-6 colborder">
+			<h2>Left</h2>
+		<!-- /left --></div>
+		
+		<div id="right" class="span-17 last">
+			<h2>Add New Books</h2>
+			<div class="search">
+				<h3>Search</h3>
+				<form id="form-booksearch" action="/edit/" method="get" accept-charset="utf-8">
+					<input type="text" name="keywords" value="Search Book Titles, Authors, or Subjects" id="form-booksearch-keywords" onclick="this.value=''; this.style.color='#333';"/>
+					<input type="submit" value="Search" id="form-booksearch-submit" />
 				</form>
 			</div>
-			{% if not forloop.last %}<hr />{% endif %}
-		{% endfor %}
-	{% endif %}
+			<div class="searchResults">
+				<h3>Results</h3>
+				{% for r in results %}
+					<div class="span-5 {% if forloop.counter|divisibleby:3 %}last{% else %} append-1 {% endif %}">
+						<img src="{{ r.thumbnail_url }}" style="width:100px; height:100px;"/>
+					</div>
+				{% endfor %}				
+			</div>
+		<!-- /right --></div>
+	<!-- /container --></div>
+	<div id="footer" class="span-24">
+		<p>Copyright &copy; 2012 University of California, Irvine</p>
+		<p>Donald Bren School of Information and Computer Science</p>
+		<p>Department of Informatics</p>
+		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
+	<!-- /footer --></div>
+</div>
+<script type="text/javascript" src="/media/assets/js/booklist.js"></script>
 </body>
 </html>

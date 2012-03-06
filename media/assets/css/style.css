@@ -162,3 +162,49 @@ li.selected, li ul li:hover {
 	text-align: center;
 	color: #999;
 }
+
+#form-booksearch {
+	margin-top:-10px;
+}
+
+#form-booksearch-keywords {
+	width:550px;
+	height:2em;
+	padding:0; margin:0;
+	font-size: 1.25em;
+	color:#999;
+	border:1px solid #ccc;
+	padding-left:2%;
+}
+#form-booksearch-submit {
+	padding:0;margin:0;
+	height:2.15em;
+	background: white;
+	border:1px solid #ccc;
+	font-size: 1.25em;
+	margin-left:-3px;
+	border-left:0;
+	padding:5px;
+	cursor:pointer;
+	color:#666;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+#form-booksearch input {
+}
+
+.searchResults h3 {
+	padding-bottom:5px;
+	border-bottom: 1px solid #ccc;
+}
+
+.searchResults {
+	margin-top:30px;
+}

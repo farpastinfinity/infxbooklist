@@ -149,7 +149,7 @@
   $window.bind("resize", reset);
 
   $.fn.stickySidebar = function (method) {
-
+	
     if (methods[method]) {
       return methods[method].apply(
           this
@@ -163,3 +163,7 @@
 
 })(jQuery);
 $('.left').stickySidebar({ speed:100 });
+
+$(document).ready(function() {
+	$('.newestBook').fadeIn();
+});

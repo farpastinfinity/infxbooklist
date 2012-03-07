@@ -6,7 +6,6 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 BOOK_COVERS = os.path.join(SITE_ROOT, 'media/', 'covers')
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     ('Sam Kaufman', 'kaufmans@uci.edu'),
 )
@@ -58,6 +57,11 @@ SECRET_KEY = '-bgt35&!q3(3sz384+zo@=oeqw*!06c1*$j32q-1%$bco_t^p('
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+	'django.core.context_processors.request',
+	'django.contrib.auth.context_processors.auth',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -69,7 +69,7 @@ def edit(request):
     if not (request.user.is_authenticated()):
         return redirect_to_login(request.get_full_path())
 
-    recs = Recommendation.objects.filter(user=request.user)
+    recs = Recommendation.objects.filter(user=request.user).order_by('-added')
     category_types = CategoryType.objects.all()
     all_categories = Category.objects.all()
     context = {'recs': recs,
@@ -83,13 +83,13 @@ def edit(request):
     for rec in recs:
 	    b = ''
 	    for ct in category_types:
-	        b += '<p style="font-weight: bold">%s</p>' % ct.description
+	        b += '<h4>%s</h4>' % ct.description
 	        for c in ct.get_categories():
-	            b += '<input type="checkbox" name="{0}" id="{1}{0}"'.format(c.slug, rec.id)
+	            b += '<span class="checkbox-container"><input type="checkbox" name="{0}" id="{1}{0}"'.format(c.slug, rec.id)
 	            if rec in books_in_c[c]:
 	                b += 'checked="checked" '
-	            b += '/><label for="%d%s">%s</label><br />' % (rec.id, c.slug, c.name)
-	    context['cat_check_htmls'].append(b)
+	            b += '/><label for="%d%s">%s</label></span>' % (rec.id, c.slug, c.name)
+	    context['cat_check_htmls'].insert(0,b)
              
     if 'keywords' in request.GET:
         context['results'] = gbooks.search(request.GET['keywords'])

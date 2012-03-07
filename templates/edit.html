@@ -3,12 +3,13 @@
 <head>
 	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
 	<link rel="stylesheet" href="/media/assets/css/blueprint/screen.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print"> 
+	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print">
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="/media/assets/css/blueprint/ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://simplemodal.googlecode.com/files/jquery.simplemodal.1.4.2.min.js"></script>
 	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
 </head>
 <body>
@@ -36,12 +37,13 @@
 					<input type="submit" value="Search" id="form-booksearch-submit" />
 				</form>
 			</div>
+			{% if results %}
 			<div class="searchResults">
-				<h3>Results</h3>
+				<h3>Search Results</h3>
 				<div class="span-17">
 				{% for r in results %}
 							<div class="border book span-4 {% if forloop.counter|divisibleby:4 %} last {% endif %}">
-								<a href="{{ r.url }}">
+								<a href="{{ r.link }}">
 									<img class="bookCover" src="{{ r.thumbnail_url }}" />
 								</a>
 								<script type="text/javascript">
@@ -49,7 +51,10 @@
 								</script>
 								<h4>{{ r.title }}</h4>
 								<label>{{ r.authors }}</label>
-								<input class="addThisBookButton" type="button" value="Add this book" onclick="javascript:$('.searchResults').fadeOut(100);"/>
+								<form action='/edit/' method="post" accept-charset="utf-8">
+									<input type="hidden" name="gid" value="{{ r.gid }}">
+									<input class="addThisBookButton" type="submit" value="Add this book">
+								</form>
 							</div>
 					{% if forloop.counter|divisibleby:4 %}
 						</div>
@@ -57,6 +62,41 @@
 					{% endif %}
 				{% endfor %}
 				</div>				
+			</div>
+			{% endif %}
+			<div class="searchResults">
+				<h3>Your books</h3>
+				<div class="span-17" >
+				{% for r in recs %}
+					<div class="container book-container {% if forloop.first %}newestBook{% endif %}" {% if not forloop.last %} style="border-bottom:1px solid #ccc;"{% endif %}>
+					<div class="border book span-4">
+								<a href="{{ r.book.url }}">
+									<img class="bookCover" src="/media/covers/{{ r.book.cover_image }}" />
+								</a>
+								<script type="text/javascript">
+									GBS_insertPreviewButtonPopup("{{ r.book.gid }}");
+								</script>
+								<h4>{{ r.book.title }}</h4>
+								<label>{{ r.book.authors }}</label>
+								<form method="post" action="/edit/" accept-charset="utf-8">
+									<input type="hidden" name="gid" value="{{ r.book.gid }}" />
+									<input type="hidden" name="action" value="delete" />
+									<input class="addThisBookButton" type="submit" value="Remove this book">
+								</form>
+					</div>
+					<div class="span-13 last book-meta-data">
+						<form action="/edit/" method="post" accept-charset="utf-8">
+							<input type="hidden" name="action" value="update" />
+							<input type="hidden" value="{{ r.book.gid }}" name="gid" />
+							<h4>Your Blurb</h4>
+							<textarea rows="4" cols="30" name="blurb">{{ r.comment|escape }}</textarea>
+								{{ cat_check_htmls.pop|safe }}
+							<input type="submit" value="Save" class="addThisBookButton"/>
+						</form>
+					</div>
+					</div>
+				{% endfor %}
+				</div>
 			</div>
 		<!-- /right --></div>
 	<!-- /container --></div>

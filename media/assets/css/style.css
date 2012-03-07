@@ -151,7 +151,7 @@ li.selected, li ul li:hover {
 	height:3em;
 }
 
-#sendbutton {
+#sendButton {
 	float: right;
 }
 
@@ -218,6 +218,23 @@ li.selected, li ul li:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
+#sendButton {
+	padding:0;margin:10px auto;
+	border:1px solid #ccc;
+	font-size: 0.95em;
+	padding:5px;
+	cursor:pointer;
+	color:#284378;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
 .searchResults h3 {
 	padding-bottom:5px;
 	border-bottom: 1px solid #ccc;
@@ -254,3 +271,68 @@ li.selected, li ul li:hover {
 .searchResults h4 {
 	font-weight: bold;
 }
+
+.book-meta-data h4 {
+
+}
+
+.book-meta-data input, .book-meta-data label {
+	display: block;	
+}
+
+.book-meta-data .checkbox-container {
+	display: block;
+	height: 1em;
+	margin:1em 15px;
+}
+
+.book-meta-data .checkbox-container label {
+	display: block;
+	margin-left:2em !important;
+	line-height: 1em;
+}
+
+.book-meta-data textarea {
+	margin-top:-1em;
+	height:3em;
+}
+
+.book-container {
+	margin:10px auto;
+	padding-top:15px;
+	padding-bottom:25px;
+}
+
+.newestBook {
+	display: none;
+}
+
+/** Simple Modal **/
+
+#simplemodal-overlay {
+	background:black;
+}
+
+#simplemodal-container {
+	position: relative;
+	background: white;
+	padding:25px;
+	width:auto !important;
+	height:auto !important;
+}
+
+#simplemodal-container h2 {
+	font-weight: 200;
+	text-align: left;
+}
+
+.simplemodal-close-button {
+	text-indent: -9999em;
+	display: block;
+	position: absolute;
+	top:-22.5px;right:-22.5px;
+	width:45px; height:45px;
+	background: url('http://cdn-www.typef.com/ui/img/pl_close_button.png') no-repeat;
+}
+
+/** DEBUG **/

@@ -54,7 +54,7 @@
 			<h2>Feedback</h2>
 			<p id="improveformprompt">What can we improve?</p>
 				<textarea id="feedbacktext" onfocus="javascript:if ($('#feedbacktext').text()==$('#feedbacktext').val()) {$('#feedbacktext').text('');}; $('#sendbutton').show(); this.style.color='#333';">Tell us here.</textarea>
-				<button id="sendbutton" onclick="javascript:$.post('/feedback/',{text: $('#feedbacktext').val()}, function(data){$('#feedbacktext').val(''); $('#improveformprompt').text('Thanks! Anything else?'); $('#feedbacktext').text('Feel free to add more, here.'); $('#sendbutton').hide()});">Send Feedback</button>
+				<button id="sendButton" onclick="javascript:$.post('/feedback/',{text: $('#feedbacktext').val()}, function(data){$('#feedbacktext').val(''); $('#improveformprompt').text('Thanks! Anything else?'); $('#feedbacktext').text('Feel free to add more, here.'); $('#sendbutton').hide()});">Send Feedback</button>
 		</div>
 		<!-- /left --></div>
 		

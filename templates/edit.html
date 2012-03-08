@@ -89,7 +89,7 @@
 							<input type="hidden" name="action" value="update" />
 							<input type="hidden" value="{{ r.book.gid }}" name="gid" />
 							<h4>Your Blurb</h4>
-							<textarea rows="4" cols="30" name="blurb">{{ r.comment|escape }}</textarea>
+							<textarea rows="4" cols="30" name="blurb" tabindex="1">{{ r.comment|escape }}</textarea>
 								{{ cat_check_htmls.pop|safe }}
 							<input type="submit" value="Save" class="addThisBookButton"/>
 						</form>

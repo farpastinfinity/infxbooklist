@@ -65,7 +65,7 @@
 					{% for book in book_list %}
 						{% if not forloop.counter|divisibleby:2 %}
 							<div class="book span-8">
-								<div class="cover span-3">
+								<div class="cover span-2">
 									<a href="{{ book.url }}">
 										<img src="/media/covers/{{ book.cover_image }}" alt="{{ book.title }}" title="{{ book.title }}" />
 									</a>
@@ -73,7 +73,7 @@
 										GBS_insertPreviewButtonPopup("{{ book.gid }}");
 									</script>
 								</div>
-								<div class="title span-5 last">
+								<div class="title span-6 last">
 									<h3><a href="{{ book.url }}">{{ book.title }}</a></h3>
 									<label>{{ book.authors }}</label>
 									{% with book.get_comments as comments %}
@@ -90,7 +90,7 @@
 					{% for book in book_list %}
 						{% if forloop.counter|divisibleby:2 %}
 							<div class="book span-8">
-								<div class="cover span-3">
+								<div class="cover span-2">
 									<a href="{{ book.url }}">
 										<img src="/media/covers/{{ book.cover_image }}" alt="{{ book.title }}" title="{{ book.title }}" />
 									</a>
@@ -98,7 +98,7 @@
 										GBS_insertPreviewButtonPopup("{{ book.gid }}");
 									</script>
 								</div>
-								<div class="title span-5 last">
+								<div class="title span-6 last">
 									<h3><a href="{{ book.url }}">{{ book.title }}</a></h3>
 									<label>{{ book.authors }}</label>
 									{% with book.get_comments as comments %}

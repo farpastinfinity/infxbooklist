@@ -114,7 +114,7 @@ li.selected, li ul li:hover {
 }
 
 .cover span img {
-	width:65%;
+	width:100%;
 	margin:0 auto;
 	margin-top:-35px;
 	border:0;

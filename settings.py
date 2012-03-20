@@ -17,7 +17,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlit$
         'NAME': 'infxbooklist',                      # Or path to database file if using sqlite3.
-        'USER': 'booklist_admin',                      # Not used with sqlite3.
+        'USER': 'bl_admin',                      # Not used with sqlite3.
         'PASSWORD': 'aiL9thah',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
@@ -98,12 +98,10 @@ LOGIN_URL = "/login/"
 
 ADMIN_UCINETIDS = ('kaufmans', 'kay', 'royr', 'sparksc', 'pchsu', 'jfulmer', 'janoc')
 
-SITE_NAME = 'Informatics Booklist'
-
 # If there is a local_settings module,
 # it should be allowed to override the
 # above. This is for clean deployment.
 try:
-    from local_settings import *
+    from user_settings import *
 except ImportError:
     pass

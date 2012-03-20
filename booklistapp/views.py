@@ -42,6 +42,7 @@ def index(request, category):
     else:
         isauth = True
     sitename = settings.SITE_NAME
+    sitedesc = settings.SITE_DESCRIPTION
 
     # What books to display
     if category:
@@ -65,6 +66,7 @@ def index(request, category):
                        template_object_name='book',
                        paginate_by=100,
                        extra_context={'sitename': sitename,
+                       					'sitedesc':sitedesc,
                                       'category_types': CategoryType.objects.all(),
                                       'recommenders': users,
                                       'current_slug': category,

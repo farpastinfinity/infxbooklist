@@ -11,6 +11,9 @@ ADMINS = (
     ('Sam Kaufman', 'kaufmans@uci.edu'),
 )
 
+ADMIN_UCINETIDS = ('kay','royr','sparksc')
+)
+
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'     # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.

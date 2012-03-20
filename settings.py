@@ -1,6 +1,7 @@
 import os
 import django
 
+AMAZON_KEY=''
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 BOOK_COVERS = os.path.join(SITE_ROOT, 'media/', 'covers')
 DEBUG = True

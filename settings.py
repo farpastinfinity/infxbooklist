@@ -6,6 +6,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 BOOK_COVERS = os.path.join(SITE_ROOT, 'media/', 'covers')
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
 ADMINS = (
     ('Sam Kaufman', 'kaufmans@uci.edu'),
 )
@@ -13,7 +14,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'     # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'booklist.db'   # Or path to database file if using sqlite3.
+DATABASE_NAME = '/usr/local/lib/python2.7/site-packages/django/db/booklist.db'   # Or path to database file if using sqlite3.
 DATABASE_USER = 'booklist'      # Not used with sqlite3.
 DATABASE_PASSWORD = 'elektric7' # Not used with sqlite3.
 DATABASE_HOST = ''              # Set to empty string for localhost. Not used with sqlite3.
@@ -36,6 +37,8 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+DEFAULT_CHARSET = 'utf-8'
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media/')
@@ -43,12 +46,12 @@ MEDIA_ROOT = os.path.join(SITE_ROOT, 'media/')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = 'http://booklist.black-cell.net/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = 'assets/'
+ADMIN_MEDIA_PREFIX = 'http://booklist.black-cell.net/adminmedia/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-bgt35&!q3(3sz384+zo@=oeqw*!06c1*$j32q-1%$bco_t^p('
@@ -57,11 +60,6 @@ SECRET_KEY = '-bgt35&!q3(3sz384+zo@=oeqw*!06c1*$j32q-1%$bco_t^p('
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-	'django.core.context_processors.request',
-	'django.contrib.auth.context_processors.auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,7 +84,17 @@ INSTALLED_APPS = (
     'infxbooklist.booklistapp'
 )
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+AUTHENTICATION_BACKENDS = (
+    'infxbooklist.uciwebauth.DjangoBackend',
+)
+
 LOGIN_URL = "/login/"
+
+ADMIN_UCINETIDS = ('kaufmans', 'kay', 'royr', 'sparksc', 'pchsu', 'jfulmer', 'janoc')
+
+SITE_NAME = 'Informatics Booklist'
 
 # If there is a local_settings module,
 # it should be allowed to override the

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+e<!DOCTYPE html>
 <html lang=en>
 <head>
 	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
@@ -23,6 +23,15 @@
 		h1 {
 			text-align: center;
 		}
+		
+		#form-login input {
+			padding:5px 10px;
+			width:75%;
+		}
+		
+		#form-login label {
+			display: block;
+		}
 	</style>
 </head>
 
@@ -45,7 +54,7 @@
 		{% endif %}
 
 		<h2>Login with Your UCInetID</h2>
-		<form class="centralform" method="post" action="{% url django.contrib.auth.views.login %}">
+		<form class="centralform" method="post" action="{% url django.contrib.auth.views.login %}" id="form-login">
 			{% csrf_token %}
 			<div>
 				{% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}

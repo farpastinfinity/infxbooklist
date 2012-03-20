@@ -15,10 +15,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlit$
-        'NAME': 'infxbooklist',                      # Or path to database file if using sqlite3.
-        'USER': 'bl_admin',                      # Not used with sqlite3.
-        'PASSWORD': 'aiL9thah',                  # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlit$
+        'NAME': 'local.db',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -95,8 +95,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = "/login/"
-
-ADMIN_UCINETIDS = ('kaufmans', 'kay', 'royr', 'sparksc', 'pchsu', 'jfulmer', 'janoc')
 
 # If there is a local_settings module,
 # it should be allowed to override the

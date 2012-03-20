@@ -97,7 +97,7 @@ class FeedbackNote(models.Model):
 # This model creates a profile attacked to each user that stores a picture and a URL
 class UserProfile(models.Model):
 	user = models.ForeignKey(User, unique=True, related_name='profile')
-	picture = models.ImageField(upload_to='pictures', blank=True)
+	picture = models.ImageField(upload_to='pictures/' % user, blank=True)
 	site = models.CharField(max_length=100, blank=True)
 	def __unicode__(self):
 		return self.user.username

@@ -85,11 +85,17 @@
 								</script>
 								<h4>{{ r.title }}</h4>
 								<label>{{ r.authors }}</label>
-								<form action='/add/' method="post" accept-charset="utf-8">
+								<form class="form-addBook form-addBook-{{r.gid}}" action='/add/' method="post" accept-charset="utf-8">
 									<input type="hidden" name="gid" value="{{ r.gid }}">
 									<input type="hidden" name="action" value="add" />
 									<input class="addThisBookButton" type="submit" value="Add this book">
+									<img class="form-addBook-loader form-addBook-loader-{{r.gid}}" src="/media/assets/css/images/ajax-loader.gif" />
 								</form>
+								<script type="text/javascript">
+									$(".form-addBook-{{r.gid}}").submit(function(event){
+										$(".form-addBook-loader-{{r.gid}}").css("display","block");
+									});
+								</script>
 							</div>
 					{% if forloop.counter|divisibleby:4 %}
 						</div>

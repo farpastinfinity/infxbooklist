@@ -1,0 +1,338 @@
+body {
+	background: url('images/bg.png') #efefef repeat-x;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color:#284378;
+	font-weight: 200;
+}
+
+h4 {
+	font-weight:400;
+}
+
+h1 {	
+	font-weight: 100;
+}
+
+h3 {
+	font-size:1.75em;
+}
+
+h3 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+#improveformprompt {
+	margin-top:-2em;
+	margin-left:1em;
+	color:#999;
+}
+
+#masthead {
+	height: 90px;
+	position: relative;
+	border-bottom:1px solid #ccc;
+}
+
+#masthead h1 {
+	position: absolute;
+	width:661px;
+	top:0;right:0;
+	line-height: 90px;
+	text-align: center;
+}
+
+a#logo {
+	display: block;
+	margin:22.5px 15px;
+	width:274px;
+	height: 45px;
+	text-indent: -9999em;
+	background: url('images/logo.png') no-repeat;
+}
+
+.columns {
+	overflow: hidden;
+}
+
+#left {
+	position: relative;
+	min-height:600px;
+}
+
+.left {
+}
+
+#left, #right {
+	padding-top:15px;
+	padding-bottom: 5000px;
+	margin-bottom:-5000px;
+}
+
+ul {
+	list-style: none;
+}
+
+li h3 {
+	padding-bottom: 5px;
+	border-bottom:1px solid #ccc;
+}
+
+ul li {
+	margin:15px auto;
+}
+
+li ul li {
+	margin-left:3px;
+	padding-left:5px;
+}
+
+li.selected, li ul li:hover {
+	color: #284378;
+	border-left:3px solid #ccc;
+	margin-left:0;
+	padding-left:5px;
+}
+
+.book {
+	margin-bottom: 3em;
+}
+.cover {
+	position: relative;
+}
+.cover img {
+	width:100%;
+	border-right:3px solid #ddd;
+	border-bottom:3px solid #ddd;
+}
+
+.cover span {
+	display: block;
+	text-align: center;
+}
+
+.cover span img {
+	width:65%;
+	margin:0 auto;
+	margin-top:-35px;
+	border:0;
+}
+
+.title h3 {
+	margin:0;
+	letter-spacing: .05em;
+}
+.title > label {
+	display: block;
+	color:#666;
+	border-bottom:1px solid #ccc;
+	margin-bottom:15px;
+	font-weight: normal;
+}
+
+.title p {
+	margin-bottom:5px;
+	color:#666;
+	font-size: 0.95em;
+	font-style: italic;
+}
+
+.title p a {
+	color:#06C;
+	font-weight: 400;
+}
+
+#feedbacktext {
+	margin-top:-1em;
+	color:#aaa;
+	width:220px;
+	height:3em;
+}
+
+#sendButton {
+	float: right;
+}
+
+#footer {
+	height: 120px;
+	border-top:1px solid #ccc;
+	padding-top:15px;
+}
+
+#footer p {
+	margin:0;
+	text-align: center;
+	color: #999;
+}
+
+#form-booksearch {
+	margin-top:-10px;
+}
+
+#form-booksearch-keywords {
+	width:550px;
+	height:2em;
+	padding:0; margin:0;
+	font-size: 1.25em;
+	color:#999;
+	border:1px solid #ccc;
+	padding-left:2%;
+}
+#form-booksearch-submit {
+	padding:0;margin:0;
+	height:2.15em;
+	background: white;
+	border:1px solid #ccc;
+	font-size: 1.25em;
+	margin-left:-3px;
+	border-left:0;
+	padding:5px;
+	cursor:pointer;
+	color:#666;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+.addThisBookButton {
+	padding:0;margin:10px auto;
+	border:1px solid #ccc;
+	font-size: 0.95em;
+	padding:5px;
+	cursor:pointer;
+	color:#333;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+#sendButton {
+	padding:0;margin:10px auto;
+	border:1px solid #ccc;
+	font-size: 0.95em;
+	padding:5px;
+	cursor:pointer;
+	color:#284378;
+	background: rgb(238,238,238); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+}
+
+.searchResults h3 {
+	padding-bottom:5px;
+	border-bottom: 1px solid #ccc;
+}
+
+.searchResults {
+	margin-top:30px;
+}
+
+.searchResults .book {
+	text-align: center;
+}
+
+.searchResults .book img.bookCover {
+	border:3px solid #aaa;
+	height:75px;
+}
+
+.searchResults .book img {
+	display: block;
+	margin:3px auto;
+}
+
+.searchResults span img {
+	width:50%;
+}
+
+.searchResults label {
+	display: block;
+	font-weight: normal;
+	margin-top:-15px;
+}
+
+.searchResults h4 {
+	font-weight: bold;
+}
+
+.book-meta-data h4 {
+
+}
+
+.book-meta-data input, .book-meta-data label {
+	display: block;	
+}
+
+.book-meta-data .checkbox-container {
+	display: block;
+	height: 1em;
+	margin:1em 15px;
+}
+
+.book-meta-data .checkbox-container label {
+	display: block;
+	margin-left:2em !important;
+	line-height: 1em;
+}
+
+.book-meta-data textarea {
+	margin-top:-1em;
+	height:3em;
+}
+
+.book-container {
+	margin:10px auto;
+	padding-top:15px;
+	padding-bottom:25px;
+}
+
+.newestBook {
+	display: none;
+}
+
+/** Simple Modal **/
+
+#simplemodal-overlay {
+	background:black;
+}
+
+#simplemodal-container {
+	position: relative;
+	background: white;
+	padding:25px;
+	width:auto !important;
+	height:auto !important;
+}
+
+#simplemodal-container h2 {
+	font-weight: 200;
+	text-align: left;
+}
+
+.simplemodal-close-button {
+	text-indent: -9999em;
+	display: block;
+	position: absolute;
+	top:-22.5px;right:-22.5px;
+	width:45px; height:45px;
+	background: url('http://cdn-www.typef.com/ui/img/pl_close_button.png') no-repeat;
+}
+
+/** DEBUG **/

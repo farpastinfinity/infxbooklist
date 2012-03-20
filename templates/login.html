@@ -10,6 +10,11 @@ e<!DOCTYPE html>
 	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
+	<script type="text/javascript">
+		$(document.ready(function() {
+			$(".login-div").css("height", $(window).height()-$("#masthead").height()-$("#footer").height());
+		});
+	</script>
 	
 	<style type="text/css">
 		form {

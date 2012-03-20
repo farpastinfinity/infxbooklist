@@ -11,17 +11,18 @@ ADMINS = (
     ('Sam Kaufman', 'kaufmans@uci.edu'),
 )
 
-ADMIN_UCINETIDS = ('kay','royr','sparksc')
-)
-
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'     # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'infxbooklist'   # Or path to database file if using sqlite3.
-DATABASE_USER = 'booklist_admin'      # Not used with sqlite3.
-DATABASE_PASSWORD = 'aiL9thah' # Not used with sqlite3.
-DATABASE_HOST = ''              # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''              # Set to empty string for default. Not used with sqlite3.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlit$
+        'NAME': 'infxbooklist',                      # Or path to database file if using sqlite3.
+        'USER': 'booklist_admin',                      # Not used with sqlite3.
+        'PASSWORD': 'aiL9thah',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

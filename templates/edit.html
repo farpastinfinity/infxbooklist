@@ -33,7 +33,7 @@
 			{% if pictureurl %}
 				<img class="displayed frame" src="{{ pictureurl }}" width="150"/>
 			{% else %}
-				<img class="displayed frame" src="/media/assets/css/images/anonymous.png" width="100"/>
+				<img class="displayed frame" src="/media/assets/css/images/anonymous.png" width="150"/>
 			{% endif %}
 			<form id="form-profile" action="/updateprofile/" method="post" enctype="multipart/form-data">
 				{% csrf_token %}

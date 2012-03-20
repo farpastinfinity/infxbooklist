@@ -3,6 +3,7 @@ from django.forms import ValidationError
 from django.contrib.auth.models import User
 from settings import AMAZON_KEY, BOOK_COVERS
 from utils import english_list
+from django.forms import ModelForm
 import ecs
 import urllib2
 import pyisbn
@@ -35,7 +36,7 @@ class Book(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     edited = models.DateTimeField(auto_now=True)
     def __unicode__(self):
-        return "\""+str(self.title)+"\" by "+str(self.authors)
+        return u'"%s" by %s' % (self.title, self.authors)
     def url(self):
         return 'http://books.google.com/books?id='+self.gid
     def get_comments(self):
@@ -44,8 +45,7 @@ class Book(models.Model):
         return [r for r in self.recommendation_set.all() if not r.comment]
     def get_all_recommendations(self):
         return [r for r in self.recommendation_set.all()]
-
-   
+           
 class Category(models.Model):
     class Meta:
         verbose_name_plural = "categories"
@@ -93,3 +93,22 @@ class FeedbackNote(models.Model):
     text = models.TextField()
     def __unicode__(self):
         return self.text[:100]
+
+# This model creates a profile attacked to each user that stores a picture and a URL
+class UserProfile(models.Model):
+	user = models.ForeignKey(User, unique=True, related_name='profile')
+	picture = models.ImageField(upload_to='pictures', blank=True)
+	site = models.CharField(max_length=100, blank=True)
+	def __unicode__(self):
+		return self.user.username
+
+# This allows for easy creation of the HTML form used to edit the profile information
+class ProfileForm(ModelForm):
+	class Meta:
+		model = UserProfile
+		exclude = ('user')
+
+# This will create a user profile if one does not exist when a profile field is accessed
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+

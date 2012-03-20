@@ -1,92 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang=en>
 <head>
 	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
-	<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
-	<style type="text/css" media="screen">
-		html, body {
-			padding: 0 0 0 0;
-			margin: 0 0 0 0;
-			border-top: solid 10px #1b1a41;
-			background-color: #fbfbfb;
-			font: normal normal normal 0.8125em/normal Verdana, sans-serif;
+	<link rel="stylesheet" href="/media/assets/css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print"> 
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="/media/assets/css/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
+	
+	<style type="text/css">
+		form {
+			margin: 0 auto;
+			width: 400px;
+		}
+		
+		p {
+			text-align: center;
 		}
 		h1 {
-			font-family: Georgia, serif;
-			font-size: 14pt;
-			padding-top: 1.6em;
-			padding-bottom: 1.6em;
-			text-transform: lowercase;
 			text-align: center;
-			font-weight: normal;
-			font-style: italic;
-		}
-		.centralform {
-			margin-left: auto;
-			margin-right: auto;
-			width: 30em;
-			margin-bottom: 60px;
-		}
-		a {
-			color: #02a;
-		}
-		a:active {
-			color: #82a;
-		}
-		a:visited {
-			color: #82a;
-		}
-		#footer {
-			clear: both;
-			margin-top: 3em;
-			border-top: 1px solid black;
-			width: 75%;
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-		}
-		#footer p {
-			margin: 0.3em;
 		}
 	</style>
-	<script type="text/javascript" charset="utf-8">
-		function formfocus() {
-			document.getElementById('id_username').focus();
-		}
-		window.onload = formfocus;
-	</script>
 </head>
 
 <body>
-
-	{% if form.errors %}
-	<p>Your username and password didn't match. Please try again.</p>
-	{% endif %}
-
-	<h1>Login with Your UCInetID</h1>
-	<form class="centralform" method="post" action="{% url django.contrib.auth.views.login %}">
-		<table>
-			<tr>
-			    <td>UCInetID</td>
-			    <td>{{ form.username }}</td>
-			</tr>
-			<tr>
-			    <td>{{ form.password.label_tag }}</td>
-			    <td>{{ form.password }}</td>
-			</tr>
-		</table>
-		{% csrf_token %}
-		<input type="submit" value="Login" />
-		<input type="hidden" name="next" value="{{ next }}" />
-	</form>
+	<div class="container">
+	<!-- Masthead -->
+	<div id="masthead" class="span-24">
+		<a href="/" id="logo">
+			UCIrvine | Department of Informatics
+		</a>
+		<h1>
+			Informatics Booklist
+		</h1>
+	<!-- /Masthead --></div>
 	
-	<div id="footer"> 
-		<p>Faculty, please <a href="/edit/">edit</a>. Or if you run this ship, <a href="/admin/">administrate</a>.</p> 
-		<p>&copy;2010 Sam Kaufman.</p> 
+	<div class="login-div prepend-8 span-8 append-8">
+	
+		{% if form.errors %}
+		<div class="span-8 error"><p>Your username and password didn't match. Please try again.</p></div>
+		{% endif %}
+
+		<h2>Login with Your UCInetID</h2>
+		<form class="centralform" method="post" action="{% url django.contrib.auth.views.login %}">
+			{% csrf_token %}
+			<div>
+				{% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
+				<label for="id_username" class="required">Username:</label> {{ form.username }}
+			</div>
+			<div>
+				{% if not form.this_is_the_login_form.errors %}{{ form.password.errors }}{% endif %}
+				<label for="id_password" class="required">Password:</label> {{ form.password }}
+				<input type="hidden" name="next" value="{{ next }}" />
+			</div>
+			<div>
+				<label>&nbsp;</label><input type="submit" value="Login" />
+			</div>
+		</form>
 	</div>
+		
+	<div id="footer" class="span-24">
+		<p>Copyright &copy; 2012 University of California, Irvine</p>
+		<p>Donald Bren School of Information and Computer Science</p>
+		<p>Department of Informatics</p>
+		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
+	<!-- /footer --></div>
 	
 </body>
 </html>

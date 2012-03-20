@@ -67,6 +67,11 @@ a.login-button {
 	color:#284378;
 }
 
+.ssl_lock_wrapper img {
+	display: block;
+	margin:90px auto;
+}
+
 a#admin-login {
 	top:50px;
 }

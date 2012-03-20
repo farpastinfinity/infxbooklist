@@ -56,13 +56,15 @@
 		</h1>
 	<!-- /Masthead --></div>
 	
-	<div class="login-div prepend-8 span-8 append-8">
-	
+	<div class="span-4 colborder ssl_lock_wrapper">
+		<img src="/media/assets/css/images/ssl_lock.png" />
+	</div>
+	<div id="login-div" class="login-div span-11 append-8 last">
+	<h2>Login with Your UCInetID</h2>
 		{% if form.errors %}
-		<div class="span-8 error"><p>Your username and password didn't match. Please try again.</p></div>
+		<div class="span-8 error" style="float:none; margin-left:12px;padding:0;"><p style="padding:0;margin:0;">Your username and password didn't match. Please try again.</p></div>
 		{% endif %}
 
-		<h2>Login with Your UCInetID</h2>
 		<form id="form-login" class="centralform" method="post" action="{% url django.contrib.auth.views.login %}">
 			{% csrf_token %}
 			<div>
@@ -87,11 +89,12 @@
 		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
 	<!-- /footer --></div>
 <script type="text/javascript">
+var contentHeight = ($(window).height() - $("#masthead").height() - $("#footer").height());
+	$(".ssl_lock_wrapper").css("height", contentHeight);
 var defaultText = "e.g. PeterAnteater";
 $(document).ready(function(){
-	$("#id_username").val(defaultText);
-});
-
+		$("#id_username").val(defaultText);
+	});
 $("#id_username").click(function(event) {
 	if(this.value == defaultText)
 		$(this).val("");

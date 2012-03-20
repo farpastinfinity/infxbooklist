@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html lang=en>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>{{ page_title }}{%if page_title%} {%endif%}{{ sitename }}</title>
 	<link rel="stylesheet" href="/media/assets/css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print"> 
 	<!--[if lt IE 8]>
@@ -10,6 +13,17 @@
 	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
+	<style>
+		#preview{
+			position:absolute;
+			padding:10px;
+			background:url('/media/assets/css/images/transparent.png');
+			display:none;
+			color:#fff;
+			border-radius:15px;
+			}
+}
+	</style>
 </head>
 <body>
 <div class="container">
@@ -18,16 +32,21 @@
 		<a href="/" id="logo">
 			UCIrvine | Department of Informatics
 		</a>
+		
 		<h1>
-			Informatics Booklist
+			{{ sitename }}
 		</h1>
+		
 	<!-- /Masthead --></div>
+	
 	<div class="container span-24 columns">
 		<div id="left" class="span-6 colborder">
 		<div class="left">
-			<h2>Filters</h2>
-			{% if category_types %}
+			<p class="about-us">To give a better idea of what Informatics is all about, the faculty have recommended these books as particularly valuable or influential.</p>
+			<div class="left-filters">
+			<h2>Filters<a href="/"><small>All</small></a></h2>
 			<ul>
+			{% if category_types %}
 			{% for ct in category_types %}
 				<li>
 					<h3>{{ct.description}}</h3>
@@ -49,18 +68,42 @@
 						</ul>
 				</li>
 			{% endfor %}
-			</ul>
 			{% endif %}
-			<h2>Feedback</h2>
+			</ul>
+			<h2>Site Feedback</h2>
 			<p id="improveformprompt">What can we improve?</p>
-				<textarea id="feedbacktext" onfocus="javascript:if ($('#feedbacktext').text()==$('#feedbacktext').val()) {$('#feedbacktext').text('');}; $('#sendbutton').show(); this.style.color='#333';">Tell us here.</textarea>
-				<button id="sendButton" onclick="javascript:$.post('/feedback/',{text: $('#feedbacktext').val()}, function(data){$('#feedbacktext').val(''); $('#improveformprompt').text('Thanks! Anything else?'); $('#feedbacktext').text('Feel free to add more, here.'); $('#sendbutton').hide()});">Send Feedback</button>
+				<form method="post" action="/feedback/" id="form-feedback">
+					<textarea id="feedbacktext" name="text">Tell us here</textarea>
+					<input type="submit" value="Send Feedback" id="sendButton" />
+					<img class="form-feedback-loader" src="/media/assets/css/images/ajax-loader.gif" />
+				</form>
+				<script type="text/javascript">
+					$('#feedbacktext').click(function() {
+						$(this).val('');
+						$('#sendButton').val('Send Feedback').removeAttr('disabled');
+						$(this).css('color','#333');
+					});
+					
+					$('#form-feedback').submit(function(event) {
+						event.preventDefault();
+						$('#sendButton').val('Saving…');
+						$('.form-feedback-loader').show();
+						$.post('/feedback/', $("#form-feedback").serialize(), function(data) {
+							$("#sendButton").val('Successfully Saved!').attr('disabled','disabled');
+							$("#improveformprompt").html('Thanks! Is there anything else?');
+							$(".form-feedback-loader").hide();
+						});
+					});
+				</script>
+			<div style="clear:both"></div>
+			<a class="login-link" href="/edit/" title="Add, edit, and remove books">Faculty Login</a>
+			<a class="login-link" href="/admin/" title="Administration">Admin Login</a>	
+		</div>
 		</div>
 		<!-- /left --></div>
 		
 		<div id="right" class="span-17 last">
-			<h2>Books</h2>
-			<div class="container">
+			<div class="">
 				<div class="span-8 append-1">
 					{% for book in book_list %}
 						{% if not forloop.counter|divisibleby:2 %}
@@ -76,11 +119,43 @@
 								<div class="title span-6 last">
 									<h3><a href="{{ book.url }}">{{ book.title }}</a></h3>
 									<label>{{ book.authors }}</label>
-									{% with book.get_comments as comments %}
+									{% with book.get_all_recommendations as comments %}
 									{% for c in comments %}
-										<p><label><a href="#">{{ c.user.get_full_name }}</a></label>:&nbsp;"{{ c.comment }}"</p>
+										<div class="author">
+											{% if c.user.profile.site %}
+												<a href="{{ c.user.profile.site }}">
+											{% endif %}
+											{% if c.user.profile.picture %}
+												<a href="{{ c.user.profile.picture.url }}" class="preview"><img src="{{ c.user.profile.picture.url }}" alt="gallery thumbnail" /></a>
+											{% else %}
+												<img src="/media/assets/css/images/anonymous.png" />
+											{% endif %}
+											{% if c.user.profile.site %}
+												</a>
+											{% endif %}
+												<p>
+													<label>
+													{% if c.user.profile.site %}
+														<a href="{{ c.user.profile.site }}">
+													{% endif %}
+													{% if c.user.get_full_name and c.user.get_full_name.strip %}
+														{{ c.user.get_full_name }}
+													{% else %}
+														{{ c.user.username }}
+													{% endif %}
+													{% if c.user.profile.site %}
+														</a>
+													{% endif %}
+													</label>
+													
+													
+												{% if c.comment %}
+													: "{{ c.comment }}"
+												{% endif %}
+												</p>
+										</div>
 									{% endfor %}
-									{% endwith %}									
+									{% endwith %}
 								</div>
 							</div>
 						{% endif %}
@@ -101,9 +176,41 @@
 								<div class="title span-6 last">
 									<h3><a href="{{ book.url }}">{{ book.title }}</a></h3>
 									<label>{{ book.authors }}</label>
-									{% with book.get_comments as comments %}
+									{% with book.get_all_recommendations as comments %}
 									{% for c in comments %}
-										<p><label><a href="#">{{ c.user.get_full_name }}</a></label>:&nbsp;"{{ c.comment }}"</p>
+										<div class="author">
+											{% if c.user.profile.site %}
+												<a href="{{ c.user.profile.site }}">
+											{% endif %}
+											{% if c.user.profile.picture %}
+												<a href="{{ c.user.profile.picture.url }}" class="preview"><img src="{{ c.user.profile.picture.url }}" alt="gallery thumbnail" /></a>
+											{% else %}
+												<img src="/media/assets/css/images/anonymous.png" />
+											{% endif %}
+											{% if c.user.profile.site %}
+												</a>
+											{% endif %}
+												<p>
+													<label>
+													{% if c.user.profile.site %}
+														<a href="{{ c.user.profile.site }}">
+													{% endif %}
+													{% if c.user.get_full_name and c.user.get_full_name.strip %}
+														{{ c.user.get_full_name }}
+													{% else %}
+														{{ c.user.username }}
+													{% endif %}
+													{% if c.user.profile.site %}
+														</a>
+													{% endif %}
+													</label>
+													
+													
+												{% if c.comment %}
+													: "{{ c.comment }}"
+												{% endif %}
+												</p>
+										</div>
 									{% endfor %}
 									{% endwith %}									
 								</div>
@@ -118,7 +225,7 @@
 		<p>Copyright &copy; 2012 University of California, Irvine</p>
 		<p>Donald Bren School of Information and Computer Science</p>
 		<p>Department of Informatics</p>
-		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
+		<p>Designed and Developed By: Sam Kaufman & <a href="mailto:ucibooklistdevs@gmail.com">Team Tremendous</a></p>
 	<!-- /footer --></div>
 </div>
 <script type="text/javascript" src="/media/assets/js/booklist.js"></script>

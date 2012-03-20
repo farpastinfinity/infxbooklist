@@ -30,7 +30,11 @@
 			<div class="left-profile-edit">
 			<h2>{{ firstname }} {{lastname}}</h2>
 			<!--<img src="http://snowbourne.com/images/rohan.jpg" />-->
-			<img class="displayed frame" src="{{ pictureurl }}" width="100"/>
+			{% if pictureurl %}
+				<img class="displayed frame" src="{{ pictureurl }}" width="100"/>
+			{% else %}
+				<img class="displayed frame" src="/media/assets/css/images/anonymous.png" width="100"/>
+			{% endif %}
 			<form id="form-profile" action="/updateprofile/" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
 				<!--{{ form.as_p }}-->

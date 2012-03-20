@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     (r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     (r'^logout/$', 'django.contrib.auth.views.logout'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r'^adminmedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/root/project/infxbooklist/media/admin/' }),
+    (r'^adminmedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ADMIN_MEDIA_ROOT }),
     (r'^profile/$', 'infxbooklist.booklistapp.views.profile'),
 )
 

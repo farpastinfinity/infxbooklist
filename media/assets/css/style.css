@@ -5,6 +5,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	color:#284378;
 	font-weight: 200;
+	font-family:"Helvetica Neue", "Helvetica", Sans-Serif;
 }
 
 h4 {
@@ -37,15 +38,16 @@ h3 a {
 }
 
 #masthead h1 {
-	position: absolute;
+	float:right;
+	margin-top:-90px;
 	width:661px;
-	top:0;right:0;
 	line-height: 90px;
 	text-align: center;
 }
 
 a#logo {
 	display: block;
+	float:left;
 	margin:22.5px 15px;
 	width:274px;
 	height: 45px;
@@ -53,22 +55,68 @@ a#logo {
 	background: url('images/logo.png') no-repeat;
 }
 
+a.login-button {
+	position:absolute;
+	top:10px;right:10px;
+	padding:5px 10px;
+	background:#eee;
+	display:block;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-decoration:none;
+	color:#284378;
+}
+
+a#admin-login {
+	top:50px;
+}
+
+a.login-button:hover {
+	background:#fff;
+}
+
+a.login-button:active {
+	background:#efefef;
+}
+
 .columns {
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 #left {
 	position: relative;
-	min-height:600px;
+	min-height:800px;
 }
 
 .left {
 }
 
+.left-filters {
+	z-index: 1;
+}
+
+#form-profile {
+	margin-top:3em;
+}
+
+#form-profile label, #form-profile input {
+	display:block;
+}
+
+#form-profile label {
+	color:#666;
+}
+
+#form-profile input {
+	font-size:1em;
+	padding:5px 10px;
+	width:200px;
+}
+
 #left, #right {
-	padding-top:15px;
-	padding-bottom: 5000px;
-	margin-bottom:-5000px;
+	padding-top:45px;
+	/* padding-bottom: 5000px;
+	margin-bottom:-5000px;*/
 }
 
 ul {
@@ -78,6 +126,18 @@ ul {
 li h3 {
 	padding-bottom: 5px;
 	border-bottom:1px solid #ccc;
+	position: relative;
+	letter-spacing: -1px;
+}
+
+h2 { position:relative;}
+
+h2 a small {
+	position: absolute;
+	right:0;
+	bottom:5px;
+	font-weight: normal;
+	font-size: 0.6em;
 }
 
 ul li {
@@ -116,7 +176,7 @@ li.selected, li ul li:hover {
 .cover span img {
 	width:100%;
 	margin:0 auto;
-	margin-top:-35px;
+	margin-top:-10px;
 	border:0;
 }
 
@@ -149,6 +209,18 @@ li.selected, li ul li:hover {
 	color:#aaa;
 	width:220px;
 	height:3em;
+	font-family: Helvetica, sans-serif;
+	font-size:1.125em;
+	line-height: 1.25em;
+}
+
+.login-link {
+	display: block;
+	margin:5px auto;
+	text-align: center;
+	font-family: serif;
+	font-size: 1.5em;
+	font-style: italic;
 }
 
 #sendButton {
@@ -156,6 +228,7 @@ li.selected, li ul li:hover {
 }
 
 #footer {
+	position:relative;
 	height: 120px;
 	border-top:1px solid #ccc;
 	padding-top:15px;
@@ -178,7 +251,7 @@ li.selected, li ul li:hover {
 	font-size: 1.25em;
 	color:#999;
 	border:1px solid #ccc;
-	padding-left:2%;
+	padding-left:10px;
 }
 #form-booksearch-submit {
 	padding:0;margin:0;
@@ -235,6 +308,11 @@ li.selected, li ul li:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
+.login-div {
+	margin-top:3em;
+	padding-bottom:3em;
+}
+
 .searchResults h3 {
 	padding-bottom:5px;
 	border-bottom: 1px solid #ccc;
@@ -276,6 +354,9 @@ li.selected, li ul li:hover {
 
 }
 
+.book-meta-data {
+}
+
 .book-meta-data input, .book-meta-data label {
 	display: block;	
 }
@@ -294,45 +375,92 @@ li.selected, li ul li:hover {
 
 .book-meta-data textarea {
 	margin-top:-1em;
-	height:3em;
+	height:auto;
+	font-family: Helvetica, sans-serif;
+	font-size:1.1em;
+	line-height: 1.25em;
+	color:#333;
 }
 
 .book-container {
-	margin:10px auto;
-	padding-top:15px;
-	padding-bottom:25px;
+	padding:10px 0 10px 10px;
 }
 
 .newestBook {
-	display: none;
+}
+.author {
+	display: block; 
+	overflow: visible;
+	width:100%;
+	margin-bottom:1em;
+}
+.author a {
+	font-style: italic;
+	font-weight: normal;
 }
 
-/** Simple Modal **/
-
-#simplemodal-overlay {
-	background:black;
+.author label {
+	font-weight: bold;
 }
 
-#simplemodal-container {
-	position: relative;
-	background: white;
-	padding:25px;
-	width:auto !important;
-	height:auto !important;
+.author a, .author p {
+	display: inline;
 }
 
-#simplemodal-container h2 {
-	font-weight: 200;
-	text-align: left;
-}
-
-.simplemodal-close-button {
-	text-indent: -9999em;
+.author p {
 	display: block;
-	position: absolute;
-	top:-22.5px;right:-22.5px;
-	width:45px; height:45px;
-	background: url('http://cdn-www.typef.com/ui/img/pl_close_button.png') no-repeat;
+}
+
+.no-books {
+	text-align: center;
+	display: block;
+	font-size: 2em;
+	font-weight: 100;
+	font-style: italic;
+	width:75%;
+	margin:0 auto;
+	color:#666;
+}
+
+.author img {
+	float:left;
+	padding-right:5px;
+	padding-bottom:5px;
+}
+
+.author img {
+	margin:5px;
+	margin-top:0;
+	width:25px;
+}
+
+.about-us {
+	color: #888;
+	font-size: 1.25em;
+	line-height: 1.5em;
+	font-weight: 200;
+	text-align: center;
+	font-style: italic;
+}
+
+.form-update-submit, .form-update-loader {
+	float:left;
+}
+
+.form-feedback-loader, .form-delete-loader {
+	margin-top:15px;
+	margin-right:15px;
+	float: right;
+}
+
+.form-update-loader, .form-delete-loader, .form-feedback-loader {
+	margin-top:15px;
+	margin-left:15px;
+	display:none;
+}
+
+#columns h2 {
+	margin-top:1em;
 }
 
 /** DEBUG **/

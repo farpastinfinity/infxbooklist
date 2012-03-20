@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-	<title>{{ page_title }}{%if page_title%}, {%endif%}Informatics Book List</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>{{ page_title }}{%if page_title%}, {%endif%}{{ sitename }}</title>
 	<link rel="stylesheet" href="/media/assets/css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/media/assets/css/blueprint/print.css" type="text/css" media="print">
 	<!--[if lt IE 8]>
@@ -15,23 +16,53 @@
 <body>
 <div class="container">
 	<!-- Masthead -->
+	
 	<div id="masthead" class="span-24">
 		<a href="/" id="logo">
 			UCIrvine | Department of Informatics
 		</a>
 		<h1>
-			Informatics Booklist
+			{{ sitename }}
 		</h1>
 	<!-- /Masthead --></div>
 	<div class="container span-24 columns">
 		<div id="left" class="span-6 colborder">
-			<h2>Left</h2>
+			<div class="left-profile-edit">
+			<h2>{{ firstname }} {{lastname}}</h2>
+			<!--<img src="http://snowbourne.com/images/rohan.jpg" />-->
+			<img class="displayed frame" src="{{ pictureurl }}" width="100"/>
+			<form id="form-profile" action="/updateprofile/" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<!--{{ form.as_p }}-->
+				<label for="picture">Change Profile Picture:</label>
+				<input type="file" name="picture" id="id_picture" class="form-profile-input" />
+				<label for="first_name">First Name</label>
+				<input type="text" name="first_name" value="{{ firstname }}" class="form-profile-input"/>
+				<label for="last_name">Last Name</label>
+				<input type="text" name="last_name" value="{{ lastname }}" class="form-profile-input" />
+				<label for="email">Email</label>
+				<input type="text" name="email" value="{{ email }}" class="form-profile-input"/>
+				<label for="id_site">Site:</label>
+				<input id="id_site" type="text" name="site" value="{{ siteurl }}" maxlength="100" class="form-profile-input"/>
+				<input type="hidden" name="profileaction" value="update" />
+				<input class="addThisBookButton form-profile-submit" type="submit" value="Submit" />
+				<img src="/media/assets/css/images/ajax-loader.gif" class="form-profile-loader form-update-loader" />
+				<script type="text/javascript">				
+					$("input[type=text]").click(function(data){
+						if(this.value == this.defaultValue)
+							$(this).select();
+					});	
+				</script>
+			</form>
+			</div>
+			<div style="clear:both"></div>
+			<a class="login-link" href="/logout/" title="Logout">Logout</a>
+			<a class="login-link" href="/admin/" title="Administration">Admin Login</a>
 		<!-- /left --></div>
 		
 		<div id="right" class="span-17 last">
 			<h2>Add New Books</h2>
 			<div class="search">
-				<h3>Search</h3>
 				<form id="form-booksearch" action="/edit/" method="get" accept-charset="utf-8">
 					<input type="text" name="keywords" value="Search Book Titles, Authors, or Subjects" id="form-booksearch-keywords" onclick="this.value=''; this.style.color='#333';"/>
 					<input type="submit" value="Search" id="form-booksearch-submit" />
@@ -41,7 +72,7 @@
 			<div class="searchResults">
 				<h3>Search Results</h3>
 				<div class="span-17">
-				{% for r in results %}
+				{% for r in results %}	
 							<div class="border book span-4 {% if forloop.counter|divisibleby:4 %} last {% endif %}">
 								<a href="{{ r.link }}">
 									<img class="bookCover" src="{{ r.thumbnail_url }}" />
@@ -51,8 +82,9 @@
 								</script>
 								<h4>{{ r.title }}</h4>
 								<label>{{ r.authors }}</label>
-								<form action='/edit/' method="post" accept-charset="utf-8">
+								<form action='/add/' method="post" accept-charset="utf-8">
 									<input type="hidden" name="gid" value="{{ r.gid }}">
+									<input type="hidden" name="action" value="add" />
 									<input class="addThisBookButton" type="submit" value="Add this book">
 								</form>
 							</div>
@@ -67,8 +99,11 @@
 			<div class="searchResults">
 				<h3>Your books</h3>
 				<div class="span-17" >
+				{% if not recs %}
+					<p class="no-books">You have not added any books yet, use the search form above to find and recommend new books!</p>
+				{% endif %}
 				{% for r in recs %}
-					<div class="container book-container {% if forloop.first %}newestBook{% endif %}" {% if not forloop.last %} style="border-bottom:1px solid #ccc;"{% endif %}>
+					<div class="span-16 last book-container book-container-{{r.book.gid}} {% if forloop.first %}newestBook{% endif %}" {% if not forloop.last %} style="border-bottom:1px solid #ccc;"{% endif %}>
 					<div class="border book span-4">
 								<a href="{{ r.book.url }}">
 									<img class="bookCover" src="/media/covers/{{ r.book.cover_image }}" />
@@ -78,21 +113,59 @@
 								</script>
 								<h4>{{ r.book.title }}</h4>
 								<label>{{ r.book.authors }}</label>
-								<form method="post" action="/edit/" accept-charset="utf-8">
+								<form method="post" class="form-delete-{{r.book.gid}}">
 									<input type="hidden" name="gid" value="{{ r.book.gid }}" />
 									<input type="hidden" name="action" value="delete" />
-									<input class="addThisBookButton" type="submit" value="Remove this book">
+									<input id="form-delete-{{r.book.gid}}-submit" class="addThisBookButton" type="submit" value="Remove this book">
+									<img style="display:none;" class="form-delete-loader form-delete-{{ r.book.gid}}-loader" src="/media/assets/css/images/ajax-loader.gif" />
 								</form>
+								<script type="text/javascript">
+									$(".form-delete-{{ r.book.gid }}").submit(function(event){
+										
+										event.preventDefault();
+										
+										if(confirm("Are you sure you want to delete {{r.book.title }}?")) {
+											$("#form-delete-{{r.book.gid}}-submit").val('Deleting…');
+											$(".form-delete-{{r.book.gid}}-loader").show();
+											$.post('/delete/', $(".form-delete-{{r.book.gid}}").serialize(), function(data) {
+												$(".book-container-{{r.book.gid}}").fadeOut('slow');
+											});
+										}
+									});
+								</script>
 					</div>
-					<div class="span-13 last book-meta-data">
-						<form action="/edit/" method="post" accept-charset="utf-8">
+					<div class="prepend-1 span-11 last book-meta-data">
+						<form class="form-update-{{ r.book.gid }}">
 							<input type="hidden" name="action" value="update" />
 							<input type="hidden" value="{{ r.book.gid }}" name="gid" />
 							<h4>Your Blurb</h4>
-							<textarea rows="4" cols="30" name="blurb" tabindex="1">{{ r.comment|escape }}</textarea>
+							<textarea class="form-update-textarea-{{ r.book.gid }}" rows="4" cols="30" name="blurb">{{ r.comment|escape }}</textarea>
 								{{ cat_check_htmls.pop|safe }}
-							<input type="submit" value="Save" class="addThisBookButton"/>
+							<input type="submit" value="Save" class="addThisBookButton form-update-submit form-update-submit-{{ r.book.gid }}" />
+							<img class="form-update-loader form-update-loader-{{ r.book.gid}}" src="/media/assets/css/images/ajax-loader.gif" />
 						</form>
+						<script type="text/javascript">
+							var focus = function() {								
+								$(".form-update-submit-{{ r.book.gid }}").val('Save Changes').removeAttr('disabled');
+							};
+							
+							$(".form-update-textarea-{{ r.book.gid }}, .form-update-checkbox-{{r.book.gid}}").change(focus);
+							$(".form-update-textarea-{{ r.book.gid }}, .form-update-checkbox-{{r.book.gid}}").focus(focus);
+														
+							$(".form-update-{{r.book.gid}}").submit(function(event) {
+								event.preventDefault();
+								
+								$(".form-update-submit-{{r.book.gid}}").val('Saving…').attr('disabled','disabled');
+								$(".form-update-loader-{{r.book.gid}}").show();
+								$.post('/update/', $(".form-update-{{r.book.gid}}").serialize(), function(data) {
+									$(".form-update-submit-{{r.book.gid}}").val('Successfully Saved!');
+									$(".book-container-{{r.book.gid}}").css({'background-color':'inherit'});
+									$(".form-update-loader-{{r.book.gid}}").hide();
+								});
+								
+								// alert('update-pressed');
+							});
+						</script>
 					</div>
 					</div>
 				{% endfor %}
@@ -104,7 +177,7 @@
 		<p>Copyright &copy; 2012 University of California, Irvine</p>
 		<p>Donald Bren School of Information and Computer Science</p>
 		<p>Department of Informatics</p>
-		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
+		<p>Designed and Developed By: Sam Kaufman & <a href="mailto:ucibooklistdevs@gmail.com">Team Tremendous</a></p>
 	<!-- /footer --></div>
 </div>
 <script type="text/javascript" src="/media/assets/js/booklist.js"></script>

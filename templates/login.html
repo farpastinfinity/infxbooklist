@@ -10,11 +10,6 @@
 	<link rel="stylesheet" href="/media/assets/css/style.css" type="text/css" media="screen, projection">
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".login-div").css("height", $(window).height()-$("#masthead").height()-$("#footer").height());
-		});
-	</script>
 	
 	<style type="text/css">
 		form {
@@ -34,8 +29,17 @@
 			width:75%;
 		}
 		
+		#form-login-submit {
+			width:auto !important;
+			margin:0 auto;
+		}
+		
 		#form-login label {
 			display: block;
+		}
+		
+		#id_username {
+			color:#666;
 		}
 	</style>
 </head>
@@ -59,7 +63,7 @@
 		{% endif %}
 
 		<h2>Login with Your UCInetID</h2>
-		<form class="centralform" method="post" action="{% url django.contrib.auth.views.login %}" id="form-login">
+		<form id="form-login" class="centralform" method="post" action="{% url django.contrib.auth.views.login %}">
 			{% csrf_token %}
 			<div>
 				{% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}
@@ -71,7 +75,7 @@
 				<input type="hidden" name="next" value="{{ next }}" />
 			</div>
 			<div>
-				<label>&nbsp;</label><input type="submit" value="Login" />
+				<label>&nbsp;</label><input type="submit" value="Login" id="form-login-submit"/>
 			</div>
 		</form>
 	</div>
@@ -80,8 +84,32 @@
 		<p>Copyright &copy; 2012 University of California, Irvine</p>
 		<p>Donald Bren School of Information and Computer Science</p>
 		<p>Department of Informatics</p>
-		<p>Designed and Developed By: Sam Kaufman & <a href="mailto:ucibooklistdevs@gmail.com">Team Tremendous</a></p>
+		<p>Designed and Developed By: Sam Kaufman & Team Tremendous</p>
 	<!-- /footer --></div>
+<script type="text/javascript">
+var defaultText = "e.g. PeterAnteater";
+$(document).ready(function(){
+	$("#id_username").val(defaultText);
+});
 
+$("#id_username").click(function(event) {
+	if(this.value == defaultText)
+		$(this).val("");
+	else
+		$(this).select();
+	$(this).css("color", "#333");
+});
+
+$("#id_username").blur(function(event) {
+	if(!this.value) {
+		$(this).val(defaultText);
+		$(this).css("color","#666");
+	}
+});
+
+$("#form-login").submit(function(event){
+	$("#form-login-submit").val("Logging in…");
+});
+</script>	
 </body>
 </html>

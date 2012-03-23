@@ -37,3 +37,14 @@ ADMIN_UCINETIDS = (
 	'jfulmer', 
 	'janoc'
 )
+
+# SSL encrypted pages
+SSL_URLS = (
+	r'/login/',
+	r'/edit/',
+	r'/add/',
+	r'/update/',
+	r'/delete/',
+	r'/updateprofile/'
+	r'/admin/',
+)

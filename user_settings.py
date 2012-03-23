@@ -45,6 +45,6 @@ SSL_URLS = (
 	r'/add/',
 	r'/update/',
 	r'/delete/',
-	r'/updateprofile/'
+	r'/updateprofile/',
 	r'/admin/',
 )

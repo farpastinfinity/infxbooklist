@@ -103,6 +103,9 @@
 		<!-- /left --></div>
 		
 		<div id="right" class="span-17 last">
+			{% if not book_list %}
+				<p class="no-books">No books have been added yet, if you're a faculty member and would like to recommend a book, <a href="/edit/">Login</a>.</p>
+			{% endif %}
 			<div class="">
 				<div class="span-8 append-1">
 					{% for book in book_list %}

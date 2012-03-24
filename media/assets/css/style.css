@@ -120,6 +120,7 @@ a.login-button:active {
 
 #left, #right {
 	padding-top:45px;
+	padding-bottom:3em;
 	/* padding-bottom: 5000px;
 	margin-bottom:-5000px;*/
 }

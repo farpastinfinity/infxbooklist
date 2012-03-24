@@ -120,9 +120,9 @@
 				{% for r in recs %}
 					<div class="span-16 last book-container book-container-{{r.book.gid}} {% if forloop.first %}newestBook{% endif %}" {% if not forloop.last %} style="border-bottom:1px solid #ccc;"{% endif %}>
 					<div class="border book span-4">
-								{% if r.thumbnail_url %}
+								{% if r.book.cover_image %}
 								<a href="{{ r.link }}">
-									<img class="bookCover" src="{{ r.thumbnail_url }}" />
+									<img class="bookCover" src="/media/covers/{{ r.book.cover_image }}" />
 								</a>
 								{% else %}
 								<a href="{{ r.link }}" class="blankBookCover">

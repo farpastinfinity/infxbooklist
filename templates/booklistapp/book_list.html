@@ -109,9 +109,15 @@
 						{% if not forloop.counter|divisibleby:2 %}
 							<div class="book span-8">
 								<div class="cover span-2">
+									{% if book.cover_image %}
 									<a href="{{ book.url }}">
 										<img src="/media/covers/{{ book.cover_image }}" alt="{{ book.title }}" title="{{ book.title }}" />
 									</a>
+									{% else %}
+									<a href="{{ book.url }}" class="blankBookCover">
+										No Book Cover
+									</a>
+									{% endif %}
 									<script type="text/javascript">
 										GBS_insertPreviewButtonPopup("{{ book.gid }}");
 									</script>
@@ -166,9 +172,15 @@
 						{% if forloop.counter|divisibleby:2 %}
 							<div class="book span-8">
 								<div class="cover span-2">
+									{% if book.cover_image %}
 									<a href="{{ book.url }}">
 										<img src="/media/covers/{{ book.cover_image }}" alt="{{ book.title }}" title="{{ book.title }}" />
 									</a>
+									{% else %}
+									<a href="{{ book.url }}" class="blankBookCover">
+										No Book Cover
+									</a>
+									{% endif %}
 									<script type="text/javascript">
 										GBS_insertPreviewButtonPopup("{{ book.gid }}");
 									</script>

@@ -122,8 +122,9 @@ def delete(request):
 		rec = Recommendation.objects.get(user=request.user, book=book)
 		rec.delete()
 		if len(Recommendation.objects.filter(book=rec.book)) == 0:
-			path = os.path.join(BOOK_COVERS, rec.book.cover_image)
-			os.unlink(path)
+			if rec.book.cover_image:
+				path = os.path.join(BOOK_COVERS, rec.book.cover_image)
+				os.unlink(path)
 			
 			rec.book.delete()
 	except Recommendation.DoesNotExist:
@@ -153,20 +154,21 @@ def add(request):
 		b.isbn = gb.isbn
 		try:
 			# Download the thumbnail image from Google
-			req = urllib2.Request(gb.thumbnail_url)
-			req.add_header("User-Agent", "Mozilla")
-			try:
-				image_link = urllib2.urlopen(req)
-				img_data = image_link.read()
-				image_link.close()
-				rand_fn = b.isbn + '-' + b.gid
-				rand_pth = os.path.join(BOOK_COVERS, rand_fn)
-				with open(rand_pth, 'w') as f:
-					os.chmod(rand_pth, 0666)
-					f.write(img_data)
-				b.cover_image = rand_fn
-			except Exception, e:
-				print >>sys.stderr, "Tried to save thumbnail, but got exception:", repr(e)
+			if gb.thumbnail_url:
+				req = urllib2.Request(gb.thumbnail_url)
+				req.add_header("User-Agent", "Mozilla")
+				try:
+					image_link = urllib2.urlopen(req)
+					img_data = image_link.read()
+					image_link.close()
+					rand_fn = b.isbn + '-' + b.gid
+					rand_pth = os.path.join(BOOK_COVERS, rand_fn)
+					with open(rand_pth, 'w') as f:
+						os.chmod(rand_pth, 0666)
+						f.write(img_data)
+					b.cover_image = rand_fn
+				except Exception, e:
+					print >>sys.stderr, "Tried to save thumbnail, but got exception:", repr(e)
 		finally:
 			b.save()
 	# Now add the recommendation

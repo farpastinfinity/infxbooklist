@@ -77,9 +77,15 @@
 				<div class="span-17">
 				{% for r in results %}	
 							<div class="border book span-4 {% if forloop.counter|divisibleby:4 %} last {% endif %}">
+								{% if r.thumbnail_url %}
 								<a href="{{ r.link }}">
 									<img class="bookCover" src="{{ r.thumbnail_url }}" />
 								</a>
+								{% else %}
+								<a href="{{ r.link }}" class="blankBookCover">
+									No Book Cover
+								</a>
+								{% endif %}
 								<script type="text/javascript">
 									GBS_insertPreviewButtonPopup("{{ r.gid }}");
 								</script>
@@ -114,9 +120,15 @@
 				{% for r in recs %}
 					<div class="span-16 last book-container book-container-{{r.book.gid}} {% if forloop.first %}newestBook{% endif %}" {% if not forloop.last %} style="border-bottom:1px solid #ccc;"{% endif %}>
 					<div class="border book span-4">
-								<a href="{{ r.book.url }}">
+								{% if r.book.cover_image %}
+								<a href="{{ r.link }}">
 									<img class="bookCover" src="/media/covers/{{ r.book.cover_image }}" />
 								</a>
+								{% else %}
+								<a href="{{ r.link }}" class="blankBookCover">
+									No Book Cover
+								</a>
+								{% endif %}
 								<script type="text/javascript">
 									GBS_insertPreviewButtonPopup("{{ r.book.gid }}");
 								</script>

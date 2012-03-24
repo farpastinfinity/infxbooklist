@@ -347,6 +347,22 @@ li.selected, li ul li:hover {
 	height:75px;
 }
 
+.book a.blankBookCover {
+	display: block;
+	text-align: center;
+	width:67px;
+	height:79px;
+	border:3px solid #ddd;
+	text-decoration: none;
+	color: #999;
+	padding-top:15px;
+	font-family: serif;
+	font-style: italic;
+	font-size: 1.1em;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 .searchResults .book img {
 	display: block;
 	margin:3px auto;
